@@ -1,0 +1,17 @@
+//
+// LINE HEIGHT
+//
+
+$line-height-breakpoints: null !default;
+$line-height-pseudo-classes: null !default;
+$line-height-values: $typography-spaces !default;
+$line-height-classes: (#{$c-line-height}: line-height) !default;
+$line-height-module: (
+    title: 'Module: Line Height',
+    breakpoints: $line-height-breakpoints,
+    pseudo-classes: $line-height-pseudo-classes,
+    values: $line-height-values,
+    classes: $line-height-classes
+) !default;
+
+@include build-module($line-height-module);

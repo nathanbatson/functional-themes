@@ -1,0 +1,34 @@
+//
+// HEIGHT
+//
+
+$height-breakpoints: $breakpoints !default;
+$height-pseudo-classes: null !default;
+$height-values: map-collect($rem-spaces, $percent-spaces, $viewport-height-spaces) !default;
+$height-classes: (#{$c-height}: height) !default;
+$height-module: (
+    title: 'Module: Height',
+    breakpoints: $height-breakpoints,
+    pseudo-classes: $height-pseudo-classes,
+    values: $height-values,
+    classes: $height-classes
+) !default;
+
+@include build-module($height-module);
+
+//
+// MIN HEIGHT
+//
+$min-height-breakpoints: $breakpoints !default;
+$min-height-pseudo-classes: null !default;
+$min-height-values: map-collect($rem-spaces, $percent-spaces, $viewport-height-spaces) !default;
+$min-height-classes: (#{$c-min-height}: min-height) !default;
+$min-height-module: (
+    title: 'Module: Min Height',
+    breakpoints: $min-height-breakpoints,
+    pseudo-classes: $min-height-pseudo-classes,
+    values: $min-height-values,
+    classes: $min-height-classes
+) !default;
+
+@include build-module($min-height-module);

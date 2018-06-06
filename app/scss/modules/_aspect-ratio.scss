@@ -1,0 +1,48 @@
+//
+// ASPECT RATIO
+//
+
+$aspect-ratio-breakpoints: $breakpoints !default;
+$aspect-ratio-pseudo-classes: (null: before) !default;
+$aspect-ratio-values: (
+    16x9: 56.25%,
+    9x16: 177.77%,
+    4x3: 75%,
+    3x4: 133.33%,
+    6x4: 66.6%,
+    4x6: 150%,
+    8x5: 62.5%,
+    5x8: 160%,
+    7x5: 71.42%,
+    5x7: 140%,
+    2x1: 50%,
+    1x2: 200%,
+    1x1: 100%
+) !default;
+$aspect-ratio-classes: (#{$c-aspect-ratio}: padding-top) !default;
+$aspect-ratio-module: (
+    title: 'Module: Aspect Ratio',
+    breakpoints: $aspect-ratio-breakpoints,
+    pseudo-classes: $aspect-ratio-pseudo-classes,
+    pseudo-only: true,
+    values: $aspect-ratio-values,
+    classes: $aspect-ratio-classes
+) !default;
+
+@include build-module($aspect-ratio-module);
+
+$aspect-ratio-class: #{build-class-name($c-aspect-ratio)} !default;
+
+.#{$aspect-ratio-class}:before {
+    content: "";
+    width: 1px;
+    margin-left: -1px;
+    float: left;
+    height: 0;
+}
+
+.#{$aspect-ratio-class}:after {
+    content: "";
+    display: table;
+    clear: both;
+}

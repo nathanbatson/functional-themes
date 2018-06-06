@@ -1,0 +1,21 @@
+//
+// TEXT DECORATION
+//
+
+$text-decoration-breakpoints: $breakpoints !default;
+$text-decoration-pseudo-classes: null !default;
+$text-decoration-values: (
+    #{$a-line-through}: line-through,
+    #{$a-underline}: underline,
+    #{$a-none}: none
+) !default;
+$text-decoration-classes: (#{$c-text-decoration}: text-decoration) !default;
+$text-decoration-module: (
+    title: 'Module: Text Decoration',
+    breakpoints: $text-decoration-breakpoints,
+    pseudo-classes: $text-decoration-pseudo-classes,
+    values: $text-decoration-values,
+    classes: $text-decoration-classes
+) !default;
+
+@include build-module($text-decoration-module);

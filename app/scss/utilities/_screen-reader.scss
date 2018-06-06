@@ -1,0 +1,30 @@
+//
+// SCREEN READER
+//
+
+@include build-docs('Utility: Screen Reader', $include-docs);
+$screen-reader-class: #{build-class-name($c-screen-reader)} !default;
+$screen-reader-focusable-class: #{build-class-name($c-screen-reader, $a-focus)} !default;
+
+.#{$screen-reader-class},
+.#{$screen-reader-focusable-class} {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+}
+
+.#{$screen-reader-focusable-class}:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
+}

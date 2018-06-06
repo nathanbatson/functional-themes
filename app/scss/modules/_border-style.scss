@@ -1,0 +1,23 @@
+//
+// BORDER STYLE
+//
+
+$border-style-breakpoints: null !default;
+$border-style-pseudo-classes: null !default;
+$border-style-values: (
+    #{$a-none}: none,
+    #{$a-solid}: solid,
+    #{$a-dashed}: dashed,
+    #{$a-dotted}: dotted,
+    #{$a-double}: double
+) !default;
+$border-style-classes: (#{$c-border-style}: border-style) !default;
+$border-style-module: (
+    title: 'Module: Border Style',
+    breakpoints: $border-style-breakpoints,
+    pseudo-classes: $border-style-pseudo-classes,
+    values: $border-style-values,
+    classes: $border-style-classes
+) !default;
+
+@include build-module($border-style-module);

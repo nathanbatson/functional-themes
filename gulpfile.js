@@ -8,6 +8,8 @@ const browserSync = require('browser-sync');
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const mkdirp = require('mkdirp');
+const postcss = require('gulp-postcss');
+const applyclass = require('postcss-apply-class');
 
 gulp.task('js', () => {
     gulp.src('src/**/*.js')
@@ -34,6 +36,7 @@ gulp.task('scss', () => {
                   'app/scss/'
               ]
         }))
+        .pipe(postcss([applyclass()]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/styles'))
         .pipe(browserSync.reload({stream: true}));

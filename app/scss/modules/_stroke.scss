@@ -1,0 +1,17 @@
+//
+// STROKE
+//
+
+$stroke-breakpoints: null !default;
+$stroke-pseudo-classes: $pseudo-hover !default;
+$stroke-values: $colors !default;
+$stroke-classes: (#{$c-stroke}: stroke) !default;
+$stroke-module: (
+    title: 'Module: Stroke',
+    breakpoints: $stroke-breakpoints,
+    pseudo-classes: $stroke-pseudo-classes,
+    values: $stroke-values,
+    classes: $stroke-classes
+) !default;
+
+@include build-module($stroke-module);

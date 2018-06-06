@@ -1,0 +1,109 @@
+// FUNCTIONS
+@function map-collect($maps...) {
+    $collection: ();
+
+    @each $map in $maps {
+        $collection: map-merge($collection, $map);
+    }
+    @return $collection;
+}
+
+@function build-class-name($context, $value: null, $breakpoint: null, $pseudo-classes: null, $pseudo-only: false, $post-selector: null) {
+    $result: #{$context};
+
+    @if($value) {
+        $result: #{$result}\(#{$value}\);
+    }
+
+    @if($breakpoint) {
+        $result: #{$result}#{$breakpoint};
+    }
+
+    $pseudo-base: $result;
+
+    @if($post-selector) {
+        $result: "#{$result} #{$post-selector}";
+    }
+
+    @if($pseudo-classes) {
+        @for $index from 1 through length($pseudo-classes) {
+            $pseudo-class: nth($pseudo-classes, $index);
+            $alias: if((length($pseudo-class) > 0), nth($pseudo-class, 1), null);
+            $selector: if((length($pseudo-class) > 1), nth($pseudo-class, 2), null);
+            $new: $pseudo-base;
+
+            @if ($alias) {
+                $new: "#{$new}\\:#{$alias}";
+            }
+
+            @if ($selector) {
+                $new: "#{$new}:#{$selector}";
+            }
+
+            @if ($pseudo-only == true and $index == 1) {
+                $result: "#{$new}";
+            } @else {
+                $result: "#{$result}, .#{$new}";
+            }
+
+            @if($post-selector) {
+                $result: "#{$result} #{$post-selector}";
+            }
+        }
+    }
+
+
+    @return $result
+}
+
+// Only for generating documentation
+// Otherwise it will compile invalid syntax
+$include-docs: false !default;
+@mixin build-docs($title: null, $include-docs: false) {
+    @if ($include-docs == true) {
+        documentation {
+            title: $title;
+        }
+    }
+};
+
+@mixin build-class($item, $breakpoint: null, $pseudo-classes: null, $pseudo-only: false, $post-selector: null) {
+    $classes: map-get($item, classes);
+    $values: map-get($item, values);
+
+    @each $label, $value in $values {
+        $value: if($value, $value, $label);
+
+        @each $context, $properties in $classes {
+            .#{build-class-name($context, $label, $breakpoint, $pseudo-classes, $pseudo-only, $post-selector)} {
+                @each $property, $property-value in $properties {
+                    $property-value: if($property-value, $property-value, $value);
+
+                    #{$property}: $property-value;
+                }
+            }
+        }
+    }
+}
+
+@mixin build-module($item) {
+    $title: map-get($item, title);
+    $pseudo-only: map-get($item, pseudo-only);
+    $breakpoints: map-get($item, breakpoints);
+    $pseudo-classes: map-get($item, pseudo-classes);
+    $post-selector: map-get($item, post-selector);
+
+    @include build-docs($title, $include-docs);
+
+    @include build-class($item, null, $pseudo-classes, $pseudo-only, $post-selector);
+
+    @if ($breakpoints) {
+        @each $breakpoint, $object in $breakpoints {
+            $query: map-get($object, query);
+
+            @media #{$query} {
+                @include build-class($item, $breakpoint, $pseudo-classes, $pseudo-only, $post-selector);
+            }
+        }
+    }
+}

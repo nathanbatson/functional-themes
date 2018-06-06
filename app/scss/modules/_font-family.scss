@@ -1,0 +1,21 @@
+//
+// FONT FAMILY
+//
+
+$font-family-breakpoints: null !default;
+$font-family-pseudo-classes: null !default;
+$font-family-values: (
+    #{$a-monospace}: $font-monospace,
+    #{$a-serif}: $font-serif,
+    #{$a-sans-serif}: $font-sans-serif
+) !default;
+$font-family-classes: (#{$c-font-family}: font-family) !default;
+$font-family-module: (
+    title: 'Module: Font Family',
+    breakpoints: $font-family-breakpoints,
+    pseudo-classes: $font-family-pseudo-classes,
+    values: $font-family-values,
+    classes: $font-family-classes
+) !default;
+
+@include build-module($font-family-module);

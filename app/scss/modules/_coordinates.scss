@@ -1,0 +1,22 @@
+//
+// COORDINATES
+//
+
+$coordinate-breakpoints: $breakpoints !default;
+$coordinate-pseudo-classes: null !default;
+$coordinate-values: map-collect($rem-spaces, $percent-spaces, $viewport-height-spaces) !default;
+$coordinate-classes: (
+    #{$c-top}: top,
+    #{$c-bottom}: bottom,
+    #{$c-left}: left,
+    #{$c-right}: right
+) !default;
+$coordinate-module: (
+    title: 'Module: Coordinates',
+    breakpoints: $coordinate-breakpoints,
+    pseudo-classes: $coordinate-pseudo-classes,
+    values: $coordinate-values,
+    classes: $coordinate-classes
+) !default;
+
+@include build-module($coordinate-module);

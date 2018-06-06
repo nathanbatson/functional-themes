@@ -1,0 +1,34 @@
+//
+// WIDTH
+//
+
+$width-breakpoints: $breakpoints !default;
+$width-pseudo-classes: null !default;
+$width-values: map-collect($rem-spaces, $grid-spaces) !default;
+$width-classes: (#{$c-width}: width) !default;
+$width-module: (
+    title: 'Module: Width',
+    breakpoints: $width-breakpoints,
+    pseudo-classes: $width-pseudo-classes,
+    values: $width-values,
+    classes: $width-classes
+) !default;
+
+@include build-module($width-module);
+
+//
+// MAX WIDTH
+//
+$max-width-breakpoints: $breakpoints !default;
+$max-width-pseudo-classes: null !default;
+$max-width-values: map-collect($rem-spaces, $measure-spaces) !default;
+$max-width-classes: (#{$c-max-width}: max-width) !default;
+$max-width-module: (
+    title: 'Module: Max Width',
+    breakpoints: $max-width-breakpoints,
+    pseudo-classes: $max-width-pseudo-classes,
+    values: $max-width-values,
+    classes: $max-width-classes
+) !default;
+
+@include build-module($max-width-module);
